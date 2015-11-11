@@ -3,6 +3,8 @@
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.util.response :refer [redirect]]
+            [ring.adapter.jetty :as jetty]
+            [environ.core :refer [env]]
             [hiccup.core :refer [html]]
             [words.lib :as lib]))
 
@@ -26,3 +28,7 @@
 
 (def app
   (wrap-defaults app-routes site-defaults))
+
+(defn -main [& [port]]
+  (let [port (Integer. (or port (env :port) 5000))]
+    (jetty/run-jetty app {:port port :join? false})))
