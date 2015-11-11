@@ -11,7 +11,7 @@
 (def random-word
   (partial rand-nth words))
 
-(defn md5-base10 [s]
+(defn md5-base10 [^String s]
   (let [md5 (java.security.MessageDigest/getInstance "md5")]
     (->> (.getBytes s)
          (.digest md5)
