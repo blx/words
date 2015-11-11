@@ -1,13 +1,9 @@
 (ns words.lib
   (:require [clojure.string :as str]))
 
-(defn upper-case? [s]
-  (= (str s) (str/upper-case s)))
-
 (def words
-  (->> (slurp "resources/private/words")
-       str/split-lines
-       (remove (comp upper-case? first))))
+  (-> (slurp "resources/private/words")
+      str/split-lines))
 
 (def words-count
   (count words))
