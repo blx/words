@@ -23,7 +23,7 @@
 
 (defroutes app-routes
   (GET "/" [] (redirect (str "/word/" (lib/random-word))))
-  (GET "/word/:word" [word] (->> word lib/page-words (word-page word) (page word)))
+  (GET "/word/:word" [word] (->> word lib/page-cache (word-page word) (page word)))
   (route/not-found "Not Found"))
 
 (def app

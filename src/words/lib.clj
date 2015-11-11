@@ -37,3 +37,5 @@
        random-words
        (take 50)))
 
+(def page-cache
+  (zipmap words (map page-words words)))
